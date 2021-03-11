@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spkafkaapplication
+  name: spkafkaapplication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spkafkaapplication
+  template:
+    metadata:
+      labels:
+        app: spkafkaapplication
+    spec:
+      nodeSelector:
+        role : kafka
+      tolerations:
+      - key: node-role.kubernetes.io/kafka 
+        value: "true"
+        operator: "Equal"
+        effect: NoSchedule
+      containers:
+      - name: spkafkaapplication
+        image: mrabbah/spring-boot-kafka-producer:latest
+        env:
+          - name: CA_CRT
+            valueFrom:
+              secretKeyRef:
+                name: kafka-cluster-cluster-ca-cert
+                key: ca.crt
+          - name: USER_CRT
+            valueFrom:
+              secretKeyRef:
+                name: sbproducer
+                key: user.crt
+          - name: USER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: sbproducer
+                key: user.key
+          - name: BOOTSTRAP_SERVERS_URL
+            value: kafka-cluster-kafka-bootstrap
+          - name: BOOTSTRAP_SERVERS_PORT
+            value: "9093"  
+          - name: TOPIC
+            value: topic-prod-01
+          - name: SHEMA_REGISTRY_ENDPOINT
+            value: "schema-registry-client"
+          - name: SHEMA_REGISTRY_PORT
+            value: "8081"
