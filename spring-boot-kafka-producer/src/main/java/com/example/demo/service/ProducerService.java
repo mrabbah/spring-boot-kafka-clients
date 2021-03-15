@@ -3,8 +3,6 @@ package com.example.demo.service;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.header.Header;
@@ -16,7 +14,7 @@ import com.example.demo.dto.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicLong;
@@ -50,8 +48,12 @@ public class ProducerService {
 		long startingTime = new Date().getTime();
 		long i = 0;
 		AtomicLong numSent = new AtomicLong(0);
-		User user = new User("RABBAH", 40);
+		int min_age = 30;
+		int max_age = 60;
+		Random rn = new Random();
 		do {
+			int age = rn.nextInt(max_age - min_age + 1) + min_age;
+			User user = new User("RABBAH", age);
 			if (transactionalProducer && i % msgPerTx == 0) {
                 log.info("Beginning new transaction. Messages sent: " + i);
                 producer.beginTransaction();

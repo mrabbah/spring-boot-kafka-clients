@@ -5,16 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class ProduserServiceTests {
+public class ConsumerServiceTests {
 
 	@Autowired
-	ProducerService producer;
+	ConsumerService consumer;
 	
 	@Test
-	void rafalMessages() {
+	void consume() {
 		try {
-			producer.rafalMessages(600);
-		} catch (InterruptedException e) {
+			consumer.consume();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
