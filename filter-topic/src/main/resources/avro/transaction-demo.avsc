@@ -1,0 +1,16 @@
+{
+  "namespace": "com.example.demo.dto",
+  "type": "record",
+  "name": "TransactionDemo",
+  "fields": [
+    {
+      "name": "ref",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "montant",
+      "type": "float"
+    }
+  ]
+}
