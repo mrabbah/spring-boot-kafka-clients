@@ -16,6 +16,6 @@ public class StreamComponent  implements CommandLineRunner {
 	@Override
     public void run(String...args) throws Exception {
 		streamService.stream();
-		streamService.getTransactionsRef();
+		
     }
 }

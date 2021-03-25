@@ -60,16 +60,6 @@ public class StreamService {
 				builder.globalTable(config.getSourceTopic(), Consumed.with(Serdes.String(), txSerd),
 						Materialized.as(config.getTransactionStore()));
 		
-		// stream.to(config.getTargetTopic(), Produced.with(Serdes.String(), txSerd));
-		
-		
-		/*
-		 builder.stream(config.getSourceTopic(), Consumed.with(Serdes.String(), userSerd))
-		.filter((key, user) -> user.getAge() < 40)
-        .mapValues(user -> new User(user.getName(), user.getAge()))
-        .to(config.getTargetTopic(), Produced.with(Serdes.String(), userSerd));
-		 */
-		
 		if(kafkaStreamsConfig.getSupplier() != null) {
 			streams = new KafkaStreams(builder.build(), props, kafkaStreamsConfig.getSupplier());
 		} else {
