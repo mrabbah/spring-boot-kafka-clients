@@ -5,7 +5,7 @@ metadata:
   namespace: kafka
 spec:
   rules:
-  - host: demo-sb-kafka.app.dev.s2m.ma
+  - host: demo-mydomain.com
     http:
       paths:
       - backend:

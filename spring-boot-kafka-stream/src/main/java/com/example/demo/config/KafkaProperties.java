@@ -46,5 +46,9 @@ public class KafkaProperties {
 	private String jeagerServiceName;
     @Value("${schemaregistryendpoint}")
 	private String schemaRegistryEndPoint;
+    @Value("${schemaregistrylogin}")
+	private String schemaregistrylogin;
+	@Value("${schemaregistrypassword}")
+	private String schemaregistrypassword;
 
 }

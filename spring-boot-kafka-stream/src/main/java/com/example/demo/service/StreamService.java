@@ -34,7 +34,7 @@ public class StreamService {
 		log.info("Creating Kafka stream withe following configuration -> " + props.toString() );
 		StreamsBuilder builder = new StreamsBuilder();
 		final Map<String, String> serdeConfig = Collections.singletonMap("schema.registry.url",
-                "http://ac97165a8a33c41dca0acabfc5898879-1191876181.us-east-2.elb.amazonaws.com:8081");
+                config.getSchemaRegistryEndPoint());
 		final SpecificAvroSerde<User> userSerd = new SpecificAvroSerde<User>();
 		userSerd.configure(serdeConfig, false);
 		builder.stream(config.getSourceTopic(), Consumed.with(Serdes.String(), userSerd))

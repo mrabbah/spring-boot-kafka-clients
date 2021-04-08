@@ -48,5 +48,9 @@ public class KafkaProperties {
 	private int messagesPerTransaction;
 	@Value("${schemaregistryendpoint}")
 	private String schemaRegistryEndPoint;
+	@Value("${schemaregistrylogin}")
+	private String schemaregistrylogin;
+	@Value("${schemaregistrypassword}")
+	private String schemaregistrypassword;
 	
 }

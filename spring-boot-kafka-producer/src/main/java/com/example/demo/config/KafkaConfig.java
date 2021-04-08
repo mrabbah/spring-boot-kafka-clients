@@ -89,6 +89,12 @@ public class KafkaConfig {
 	        if(config.getSchemaRegistryEndPoint() != null) {
 	        	props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, 
 	        			config.getSchemaRegistryEndPoint());
+	        	if(config.getSchemaregistrylogin() != null) {
+	        		props.put(KafkaAvroSerializerConfig.BASIC_AUTH_CREDENTIALS_SOURCE, "USER_INFO");
+		        	props.put(KafkaAvroSerializerConfig.USER_INFO_CONFIG, 
+		        			config.getSchemaregistrylogin() + ":" + config.getSchemaregistrypassword());
+	        	}
+	        	
 	        }
 		}
 		return props;
